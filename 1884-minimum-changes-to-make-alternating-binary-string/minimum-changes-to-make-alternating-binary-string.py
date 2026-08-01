@@ -1,15 +1,13 @@
 class Solution:
     def minOperations(self, s: str) -> int:
-        count_pattern1 = 0  # Operations needed to match "010101..."
+        count_pattern1 = 0  # Operations needed for "010101..."
         
         for i, char in enumerate(s):
-            # Expected character for pattern starting with '0'
+            # For "010101...", even indices should be '0' and odd should be '1'
             expected = '0' if i % 2 == 0 else '1'
             if char != expected:
                 count_pattern1 += 1
                 
-        # Total length of the string
         n = len(s)
-        
-        # Minimum between changing to "010101..." and "101010..."
+        # The number of changes for "101010..." is simply (n - count_pattern1)
         return min(count_pattern1, n - count_pattern1)
