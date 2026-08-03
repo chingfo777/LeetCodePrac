@@ -1,5 +1,5 @@
 class Solution:
-    def findDifferentBinaryString(self, nums: List[str]) -> str:
+    def findDifferentBinaryString(self, nums: list[str]) -> str:
         res = []
         for i in range(len(nums)):
             # Invert the i-th character of the i-th string
