@@ -1,5 +1,9 @@
 class Solution:
     def isValid(self, s: str) -> bool:
+        # Fast exit: an odd-length string cannot be valid
+        if len(s) % 2 != 0:
+            return False
+        
         stack = []
         mapping = {
             ')': '(',
@@ -9,15 +13,15 @@ class Solution:
         
         for char in s:
             if char in mapping:
-                # Pop the top element if stack is non-empty, else use a dummy value
+                # If stack is non-empty, pop the top; otherwise use a dummy sentinel
                 top_element = stack.pop() if stack else '#'
                 
-                # Check if the popped opening bracket matches the current closing bracket
+                # If opening bracket doesn't match the required one, it's invalid
                 if mapping[char] != top_element:
                     return False
             else:
-                # It's an opening bracket, push onto the stack
+                # Push opening bracket onto the stack
                 stack.append(char)
                 
-        # If the stack is empty, all brackets were properly closed
+        # Valid only if no unmatched opening brackets remain
         return len(stack) == 0
